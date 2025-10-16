@@ -14,4 +14,10 @@ class HomeState with _$HomeState {
       BreedsSuccess;
 
   const factory HomeState.getBreedsError(String message) = BreedsError;
+
+  ///pagination
+  const factory HomeState.paginationLoading() = PaginationLoading;
+
+  const factory HomeState.paginationFailure(
+      {required String errorMessage}) = PaginationFailure;
 }

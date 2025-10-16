@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:pet_finder_app/core/networking/api_result.dart';
+import 'package:pet_finder_app/core/routing/router_observer.dart';
 import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
 import 'package:pet_finder_app/features/home/data/repositories/home_repository.dart';
 
@@ -32,28 +33,35 @@ class HomeCubit extends Cubit<HomeState> {
       _page = 0;
       hasReachedMax = false;
       breeds.clear();
-      emit(const HomeState.getBreedsLoading());
+    } else if (_page > 0) {
+      emit(const HomeState.paginationLoading());
     } else {
-      emit(HomeState.getBreedsSuccess(breeds));
+      emit(const HomeState.getBreedsLoading());
     }
 
     final response = await homeRepository.getBreedsPaginated(10, _page);
 
     response.when(
-      success: (data) {
-        if (data.isEmpty) {
+      success: (breedsData) {
+        if (breedsData.isEmpty) {
           hasReachedMax = true;
         } else {
+          breeds.addAll(breedsData);
           _page++;
-          breeds.addAll(data);
         }
-        emit(HomeState.getBreedsSuccess(breeds));
+        if (!isClosed) {
+          emit(HomeState.getBreedsSuccess(breeds));
+        }
+        _getProductsCallCount++;
+        logger.i('getBreedsPaginated called $_getProductsCallCount times');
       },
       failure: (error) {
-        emit(HomeState.getBreedsError(error.message.toString()));
+        if (!isClosed) {
+          emit(HomeState.getBreedsError(error.message.toString()));
+        }
       },
     );
     isFetching = false;
-    _getProductsCallCount++;
+    // _getProductsCallCount++;
   }
 }

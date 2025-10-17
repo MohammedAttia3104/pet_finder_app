@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pet_finder_app/core/extensions/navigation_extension.dart';
+import 'package:pet_finder_app/core/routing/routes.dart';
 import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
 
 import '../../../../../core/widgets/fancy_network_image.dart';
@@ -14,40 +16,44 @@ class PetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width - 32.w,
-      height: 124.h,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8).r,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            spreadRadius: 0,
-            blurRadius: 4,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          /// Pet Image
-          Padding(
-            padding: EdgeInsets.only(
-              left: 10.w,
-              top: 6.h,
-              bottom: 6.h,
-              right: 16.w,
+    return GestureDetector(
+      onTap: () => context.pushNamed(Routes.breedDetailsScreen),
+      child: Container(
+        width: MediaQuery.sizeOf(context).width - 32.w,
+        height: 124.h,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8).r,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 0),
             ),
-            child: FancyNetworkImage(
-              imagePath: breedImage ?? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-              width: 112.w,
-              height: 112.h,
-              borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            /// Pet Image
+            Padding(
+              padding: EdgeInsets.only(
+                left: 10.w,
+                top: 6.h,
+                bottom: 6.h,
+                right: 16.w,
+              ),
+              child: FancyNetworkImage(
+                imagePath:
+                    breedImage ??
+                    'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
+                width: 112.w,
+                height: 112.h,
+                borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
+              ),
             ),
-          ),
 
           /// Pet Details
           Expanded(
@@ -115,18 +121,18 @@ class PetItem extends StatelessWidget {
             ),
           ),
 
-          /// Favorite icon
-          Padding(
-            padding: EdgeInsets.only(right: 12.w, top: 16.h),
-            child: SvgPicture.asset(
-              Assets.svgsHeartSvg,
-              width: 28.w,
-              height: 28.h,
+            /// Favorite icon
+            Padding(
+              padding: EdgeInsets.only(right: 12.w, top: 16.h),
+              child: SvgPicture.asset(
+                Assets.svgsHeartSvg,
+                width: 28.w,
+                height: 28.h,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-

@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'font_weight_helper.dart';
 
 class AppStyles {
   /// Example:
@@ -7,4 +10,15 @@ class AppStyles {
   //   color: AppColors.blackColor,
   //   fontWeight: FontWeightHelper.medium,
   // );
+
+  static TextStyle font24BlackBold = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
+  static TextStyle font20BlackBold = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-SizedBox verticalSpace(double height) {
-  return SizedBox(height: height.h);
-}
-
-SizedBox horizontalSpace(double width) {
-  return SizedBox(width: width.w);
+extension SpacingExtensions on num {
+  SizedBox get verticalSpace => SizedBox(height: h);
+  SizedBox get horizontalSpace => SizedBox(width: w);
 }

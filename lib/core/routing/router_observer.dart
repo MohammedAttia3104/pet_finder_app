@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 final logger = Logger();
 
-class RouterObserver extends NavigatorObserver {
+class AppRouterObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _logRouteChange('Pushed', route);

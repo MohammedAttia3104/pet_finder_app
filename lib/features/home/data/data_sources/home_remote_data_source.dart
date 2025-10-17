@@ -21,4 +21,9 @@ abstract class HomeRemoteDataSource {
     @Query('q') String query,
     @Query('attach_image') int attachImage,
   );
+
+  @GET('v1/breeds/{id}')
+  Future<BreedModel> getBreedById(
+    @Path('id') String id,
+  );
 }

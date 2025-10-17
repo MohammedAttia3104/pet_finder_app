@@ -7,6 +7,7 @@ import '../models/breed_model.dart';
 abstract class HomeRepository {
   Future<ApiResult<List<BreedModel>>> getBreedsPaginated(int limit, int page);
   Future<ApiResult<List<BreedModel>>> searchBreeds(String query, {bool attachImage = true});
+  Future<ApiResult<BreedModel>> getBreedById(String id);
 }
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -38,6 +39,16 @@ class HomeRepositoryImpl implements HomeRepository {
         attachImage ? 1 : 0,
       );
       return ApiResult.success(breeds);
+    } catch (e) {
+      return ApiResult.failure(ApiErrorHandler.handle(e));
+    }
+  }
+
+  @override
+  Future<ApiResult<BreedModel>> getBreedById(String id) async {
+    try {
+      final breed = await remoteDataSource.getBreedById(id);
+      return ApiResult.success(breed);
     } catch (e) {
       return ApiResult.failure(ApiErrorHandler.handle(e));
     }

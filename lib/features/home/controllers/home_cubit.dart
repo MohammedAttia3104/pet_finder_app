@@ -25,6 +25,30 @@ class HomeCubit extends Cubit<HomeState> {
   List<BreedModel> searchResults = [];
   bool isSearching = false;
 
+  /// Breed details variable
+  BreedModel? selectedBreed;
+
+  Future<void> getBreedById(String id) async {
+    emit(const HomeState.getBreedDetailsLoading());
+
+    final response = await homeRepository.getBreedById(id);
+
+    response.when(
+      success: (breedData) {
+        selectedBreed = breedData;
+        if (!isClosed) {
+          emit(HomeState.getBreedDetailsSuccess(breedData));
+        }
+        logger.i('getBreedById fetched breed: ${breedData.name}');
+      },
+      failure: (error) {
+        if (!isClosed) {
+          emit(HomeState.getBreedDetailsError(error.message.toString()));
+        }
+      },
+    );
+  }
+
   Future<void> searchBreeds(String query) async {
     if (query.isEmpty) {
       clearSearch();

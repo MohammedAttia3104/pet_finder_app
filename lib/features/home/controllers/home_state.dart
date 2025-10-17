@@ -28,4 +28,12 @@ class HomeState with _$HomeState {
       SearchBreedsSuccess;
 
   const factory HomeState.searchBreedsError(String message) = SearchBreedsError;
+
+  ///Get Breed Details
+  const factory HomeState.getBreedDetailsLoading() = BreedDetailsLoading;
+
+  const factory HomeState.getBreedDetailsSuccess(BreedModel breed) =
+      BreedDetailsSuccess;
+
+  const factory HomeState.getBreedDetailsError(String message) = BreedDetailsError;
 }

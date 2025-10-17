@@ -55,7 +55,7 @@ extension HomeStatePatterns on HomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( BreedsLoading value)?  getBreedsLoading,TResult Function( BreedsSuccess value)?  getBreedsSuccess,TResult Function( BreedsError value)?  getBreedsError,TResult Function( PaginationLoading value)?  paginationLoading,TResult Function( PaginationFailure value)?  paginationFailure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( BreedsLoading value)?  getBreedsLoading,TResult Function( BreedsSuccess value)?  getBreedsSuccess,TResult Function( BreedsError value)?  getBreedsError,TResult Function( PaginationLoading value)?  paginationLoading,TResult Function( PaginationFailure value)?  paginationFailure,TResult Function( SearchBreedsLoading value)?  searchBreedsLoading,TResult Function( SearchBreedsSuccess value)?  searchBreedsSuccess,TResult Function( SearchBreedsError value)?  searchBreedsError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -64,7 +64,10 @@ return getBreedsLoading(_that);case BreedsSuccess() when getBreedsSuccess != nul
 return getBreedsSuccess(_that);case BreedsError() when getBreedsError != null:
 return getBreedsError(_that);case PaginationLoading() when paginationLoading != null:
 return paginationLoading(_that);case PaginationFailure() when paginationFailure != null:
-return paginationFailure(_that);case _:
+return paginationFailure(_that);case SearchBreedsLoading() when searchBreedsLoading != null:
+return searchBreedsLoading(_that);case SearchBreedsSuccess() when searchBreedsSuccess != null:
+return searchBreedsSuccess(_that);case SearchBreedsError() when searchBreedsError != null:
+return searchBreedsError(_that);case _:
   return orElse();
 
 }
@@ -82,7 +85,7 @@ return paginationFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( BreedsLoading value)  getBreedsLoading,required TResult Function( BreedsSuccess value)  getBreedsSuccess,required TResult Function( BreedsError value)  getBreedsError,required TResult Function( PaginationLoading value)  paginationLoading,required TResult Function( PaginationFailure value)  paginationFailure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( BreedsLoading value)  getBreedsLoading,required TResult Function( BreedsSuccess value)  getBreedsSuccess,required TResult Function( BreedsError value)  getBreedsError,required TResult Function( PaginationLoading value)  paginationLoading,required TResult Function( PaginationFailure value)  paginationFailure,required TResult Function( SearchBreedsLoading value)  searchBreedsLoading,required TResult Function( SearchBreedsSuccess value)  searchBreedsSuccess,required TResult Function( SearchBreedsError value)  searchBreedsError,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -91,7 +94,10 @@ return getBreedsLoading(_that);case BreedsSuccess():
 return getBreedsSuccess(_that);case BreedsError():
 return getBreedsError(_that);case PaginationLoading():
 return paginationLoading(_that);case PaginationFailure():
-return paginationFailure(_that);case _:
+return paginationFailure(_that);case SearchBreedsLoading():
+return searchBreedsLoading(_that);case SearchBreedsSuccess():
+return searchBreedsSuccess(_that);case SearchBreedsError():
+return searchBreedsError(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -108,7 +114,7 @@ return paginationFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( BreedsLoading value)?  getBreedsLoading,TResult? Function( BreedsSuccess value)?  getBreedsSuccess,TResult? Function( BreedsError value)?  getBreedsError,TResult? Function( PaginationLoading value)?  paginationLoading,TResult? Function( PaginationFailure value)?  paginationFailure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( BreedsLoading value)?  getBreedsLoading,TResult? Function( BreedsSuccess value)?  getBreedsSuccess,TResult? Function( BreedsError value)?  getBreedsError,TResult? Function( PaginationLoading value)?  paginationLoading,TResult? Function( PaginationFailure value)?  paginationFailure,TResult? Function( SearchBreedsLoading value)?  searchBreedsLoading,TResult? Function( SearchBreedsSuccess value)?  searchBreedsSuccess,TResult? Function( SearchBreedsError value)?  searchBreedsError,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -117,7 +123,10 @@ return getBreedsLoading(_that);case BreedsSuccess() when getBreedsSuccess != nul
 return getBreedsSuccess(_that);case BreedsError() when getBreedsError != null:
 return getBreedsError(_that);case PaginationLoading() when paginationLoading != null:
 return paginationLoading(_that);case PaginationFailure() when paginationFailure != null:
-return paginationFailure(_that);case _:
+return paginationFailure(_that);case SearchBreedsLoading() when searchBreedsLoading != null:
+return searchBreedsLoading(_that);case SearchBreedsSuccess() when searchBreedsSuccess != null:
+return searchBreedsSuccess(_that);case SearchBreedsError() when searchBreedsError != null:
+return searchBreedsError(_that);case _:
   return null;
 
 }
@@ -134,7 +143,7 @@ return paginationFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  getBreedsLoading,TResult Function( List<BreedModel> breeds)?  getBreedsSuccess,TResult Function( String message)?  getBreedsError,TResult Function()?  paginationLoading,TResult Function( String errorMessage)?  paginationFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  getBreedsLoading,TResult Function( List<BreedModel> breeds)?  getBreedsSuccess,TResult Function( String message)?  getBreedsError,TResult Function()?  paginationLoading,TResult Function( String errorMessage)?  paginationFailure,TResult Function()?  searchBreedsLoading,TResult Function( List<BreedModel> breeds)?  searchBreedsSuccess,TResult Function( String message)?  searchBreedsError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case BreedsLoading() when getBreedsLoading != null:
@@ -142,7 +151,10 @@ return getBreedsLoading();case BreedsSuccess() when getBreedsSuccess != null:
 return getBreedsSuccess(_that.breeds);case BreedsError() when getBreedsError != null:
 return getBreedsError(_that.message);case PaginationLoading() when paginationLoading != null:
 return paginationLoading();case PaginationFailure() when paginationFailure != null:
-return paginationFailure(_that.errorMessage);case _:
+return paginationFailure(_that.errorMessage);case SearchBreedsLoading() when searchBreedsLoading != null:
+return searchBreedsLoading();case SearchBreedsSuccess() when searchBreedsSuccess != null:
+return searchBreedsSuccess(_that.breeds);case SearchBreedsError() when searchBreedsError != null:
+return searchBreedsError(_that.message);case _:
   return orElse();
 
 }
@@ -160,7 +172,7 @@ return paginationFailure(_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  getBreedsLoading,required TResult Function( List<BreedModel> breeds)  getBreedsSuccess,required TResult Function( String message)  getBreedsError,required TResult Function()  paginationLoading,required TResult Function( String errorMessage)  paginationFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  getBreedsLoading,required TResult Function( List<BreedModel> breeds)  getBreedsSuccess,required TResult Function( String message)  getBreedsError,required TResult Function()  paginationLoading,required TResult Function( String errorMessage)  paginationFailure,required TResult Function()  searchBreedsLoading,required TResult Function( List<BreedModel> breeds)  searchBreedsSuccess,required TResult Function( String message)  searchBreedsError,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case BreedsLoading():
@@ -168,7 +180,10 @@ return getBreedsLoading();case BreedsSuccess():
 return getBreedsSuccess(_that.breeds);case BreedsError():
 return getBreedsError(_that.message);case PaginationLoading():
 return paginationLoading();case PaginationFailure():
-return paginationFailure(_that.errorMessage);case _:
+return paginationFailure(_that.errorMessage);case SearchBreedsLoading():
+return searchBreedsLoading();case SearchBreedsSuccess():
+return searchBreedsSuccess(_that.breeds);case SearchBreedsError():
+return searchBreedsError(_that.message);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -185,7 +200,7 @@ return paginationFailure(_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  getBreedsLoading,TResult? Function( List<BreedModel> breeds)?  getBreedsSuccess,TResult? Function( String message)?  getBreedsError,TResult? Function()?  paginationLoading,TResult? Function( String errorMessage)?  paginationFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  getBreedsLoading,TResult? Function( List<BreedModel> breeds)?  getBreedsSuccess,TResult? Function( String message)?  getBreedsError,TResult? Function()?  paginationLoading,TResult? Function( String errorMessage)?  paginationFailure,TResult? Function()?  searchBreedsLoading,TResult? Function( List<BreedModel> breeds)?  searchBreedsSuccess,TResult? Function( String message)?  searchBreedsError,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case BreedsLoading() when getBreedsLoading != null:
@@ -193,7 +208,10 @@ return getBreedsLoading();case BreedsSuccess() when getBreedsSuccess != null:
 return getBreedsSuccess(_that.breeds);case BreedsError() when getBreedsError != null:
 return getBreedsError(_that.message);case PaginationLoading() when paginationLoading != null:
 return paginationLoading();case PaginationFailure() when paginationFailure != null:
-return paginationFailure(_that.errorMessage);case _:
+return paginationFailure(_that.errorMessage);case SearchBreedsLoading() when searchBreedsLoading != null:
+return searchBreedsLoading();case SearchBreedsSuccess() when searchBreedsSuccess != null:
+return searchBreedsSuccess(_that.breeds);case SearchBreedsError() when searchBreedsError != null:
+return searchBreedsError(_that.message);case _:
   return null;
 
 }
@@ -494,6 +512,176 @@ class _$PaginationFailureCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
   return _then(PaginationFailure(
 errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class SearchBreedsLoading implements HomeState {
+  const SearchBreedsLoading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchBreedsLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeState.searchBreedsLoading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class SearchBreedsSuccess implements HomeState {
+  const SearchBreedsSuccess(final  List<BreedModel> breeds): _breeds = breeds;
+  
+
+ final  List<BreedModel> _breeds;
+ List<BreedModel> get breeds {
+  if (_breeds is EqualUnmodifiableListView) return _breeds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_breeds);
+}
+
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchBreedsSuccessCopyWith<SearchBreedsSuccess> get copyWith => _$SearchBreedsSuccessCopyWithImpl<SearchBreedsSuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchBreedsSuccess&&const DeepCollectionEquality().equals(other._breeds, _breeds));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_breeds));
+
+@override
+String toString() {
+  return 'HomeState.searchBreedsSuccess(breeds: $breeds)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SearchBreedsSuccessCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $SearchBreedsSuccessCopyWith(SearchBreedsSuccess value, $Res Function(SearchBreedsSuccess) _then) = _$SearchBreedsSuccessCopyWithImpl;
+@useResult
+$Res call({
+ List<BreedModel> breeds
+});
+
+
+
+
+}
+/// @nodoc
+class _$SearchBreedsSuccessCopyWithImpl<$Res>
+    implements $SearchBreedsSuccessCopyWith<$Res> {
+  _$SearchBreedsSuccessCopyWithImpl(this._self, this._then);
+
+  final SearchBreedsSuccess _self;
+  final $Res Function(SearchBreedsSuccess) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? breeds = null,}) {
+  return _then(SearchBreedsSuccess(
+null == breeds ? _self._breeds : breeds // ignore: cast_nullable_to_non_nullable
+as List<BreedModel>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class SearchBreedsError implements HomeState {
+  const SearchBreedsError(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchBreedsErrorCopyWith<SearchBreedsError> get copyWith => _$SearchBreedsErrorCopyWithImpl<SearchBreedsError>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchBreedsError&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'HomeState.searchBreedsError(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SearchBreedsErrorCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $SearchBreedsErrorCopyWith(SearchBreedsError value, $Res Function(SearchBreedsError) _then) = _$SearchBreedsErrorCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class _$SearchBreedsErrorCopyWithImpl<$Res>
+    implements $SearchBreedsErrorCopyWith<$Res> {
+  _$SearchBreedsErrorCopyWithImpl(this._self, this._then);
+
+  final SearchBreedsError _self;
+  final $Res Function(SearchBreedsError) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(SearchBreedsError(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

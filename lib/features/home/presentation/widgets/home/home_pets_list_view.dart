@@ -34,12 +34,11 @@ class HomePetsListView extends StatelessWidget {
                   final breedImage = breed.referenceImageId?.toImageUrl();
                   return PetItem(breed: breed, breedImage: breedImage);
                 } else {
-                  // Show shimmer skeleton for pagination loading
                   return PetItemSkeleton();
                 }
               },
               separatorBuilder: (_, _) => 12.verticalSpace,
-              itemCount: cubit.breeds.length + 5,
+              itemCount: cubit.breeds.length + 3,
             );
           },
           getBreedsSuccess: (breeds) {
@@ -54,6 +53,67 @@ class HomePetsListView extends StatelessWidget {
               itemCount: breeds.length,
             );
           },
+          searchBreedsLoading: () => ListView.separated(
+            itemBuilder: (context, index) => PetItemSkeleton(),
+            separatorBuilder: (_, _) => 12.verticalSpace,
+            itemCount: 3,
+          ),
+          searchBreedsSuccess: (breeds) {
+            if (breeds.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.search_off, size: 64.w, color: Colors.grey),
+                    16.verticalSpace,
+                    Text(
+                      'No breeds found',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final breed = breeds[index];
+                final breedImage = breed.referenceImageId?.toImageUrl();
+                return PetItem(breed: breed, breedImage: breedImage);
+              },
+              separatorBuilder: (_, _) => 12.verticalSpace,
+              itemCount: breeds.length,
+            );
+          },
+          searchBreedsError: (failure) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.error_outline, size: 64.w, color: Colors.red),
+                16.verticalSpace,
+                Text(
+                  'Search failed',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
+                ),
+                8.verticalSpace,
+                Text(
+                  failure,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.grey,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
           orElse: () => SizedBox.shrink(),
         );
       },

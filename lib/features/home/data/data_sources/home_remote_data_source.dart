@@ -15,4 +15,10 @@ abstract class HomeRemoteDataSource {
     @Query('limit') int limit,
     @Query('page') int page,
   );
+
+  @GET('v1/breeds/search')
+  Future<List<BreedModel>> searchBreeds(
+    @Query('q') String query,
+    @Query('attach_image') int attachImage,
+  );
 }

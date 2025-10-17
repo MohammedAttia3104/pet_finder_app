@@ -20,4 +20,20 @@ class HomeState with _$HomeState {
 
   const factory HomeState.paginationFailure(
       {required String errorMessage}) = PaginationFailure;
+
+  ///Search Breeds
+  const factory HomeState.searchBreedsLoading() = SearchBreedsLoading;
+
+  const factory HomeState.searchBreedsSuccess(List<BreedModel> breeds) =
+      SearchBreedsSuccess;
+
+  const factory HomeState.searchBreedsError(String message) = SearchBreedsError;
+
+  ///Get Breed Details
+  const factory HomeState.getBreedDetailsLoading() = BreedDetailsLoading;
+
+  const factory HomeState.getBreedDetailsSuccess(BreedModel breed) =
+      BreedDetailsSuccess;
+
+  const factory HomeState.getBreedDetailsError(String message) = BreedDetailsError;
 }

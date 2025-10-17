@@ -39,6 +39,12 @@ dependencies:
   mocktail: ^1.0.4
   #Bloc Testing Utilities
   bloc_test: ^10.0.0
+  #SVG
+  flutter_svg: ^2.2.1
+  # Fancy Shimmer effect
+  fancy_shimmer_image: ^2.0.3
+  # Skeletonizer for shimmer loading effects
+  skeletonizer: ^2.1.0+1
 
   cupertino_icons: ^1.0.8
 
@@ -96,3 +102,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  assets:
+    - assets/images/
+    - assets/svgs/
+    - assets/

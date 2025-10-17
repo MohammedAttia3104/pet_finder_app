@@ -17,7 +17,10 @@ class PetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(Routes.breedDetailsScreen),
+      onTap: () => context.pushNamed(
+        Routes.breedDetailsScreen,
+        arguments: {'breedId': breed.id},
+      ),
       child: Container(
         width: MediaQuery.sizeOf(context).width - 32.w,
         height: 124.h,
@@ -55,71 +58,71 @@ class PetItem extends StatelessWidget {
               ),
             ),
 
-          /// Pet Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  breed.name,
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                4.verticalSpace,
-                Text(
-                  '${breed.weight.imperial} lbs',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF646464),
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                2.verticalSpace,
-                Text(
-                  '${breed.lifeSpan} years old',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF646464),
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                8.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      Assets.svgsLocationSvg,
-                      width: 16.w,
-                      height: 16.h,
+            /// Pet Details
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    breed.name,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    4.horizontalSpace,
-                    Expanded(
-                      child: Text(
-                        breed.origin,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFF646464),
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  4.verticalSpace,
+                  Text(
+                    '${breed.weight.imperial} lbs',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xFF646464),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  2.verticalSpace,
+                  Text(
+                    '${breed.lifeSpan} years old',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xFF646464),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  8.verticalSpace,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.svgsLocationSvg,
+                        width: 16.w,
+                        height: 16.h,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      4.horizontalSpace,
+                      Expanded(
+                        child: Text(
+                          breed.origin,
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFF646464),
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
 
             /// Favorite icon
             Padding(

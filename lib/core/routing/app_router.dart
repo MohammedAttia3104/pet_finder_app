@@ -29,9 +29,15 @@ class AppRouter {
           },
         );
       case Routes.breedDetailsScreen:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final breedId = args?['breedId'] ?? '';
+
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => BreedDetailsScreen(),
+          builder: (context) => BlocProvider.value(
+            value: sl<HomeCubit>(),
+            child: BreedDetailsScreen(breedId: breedId),
+          ),
         );
       default:
         return null;

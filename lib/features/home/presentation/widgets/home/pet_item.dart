@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pet_finder_app/core/extensions/navigation_extension.dart';
 import 'package:pet_finder_app/core/routing/routes.dart';
+import 'package:pet_finder_app/features/favorite/controllers/favorite_cubit.dart';
+import 'package:pet_finder_app/features/favorite/controllers/favorite_state.dart';
 import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
 
+import '../../../../../core/helpers/toast_helper.dart';
 import '../../../../../core/widgets/fancy_network_image.dart';
 import '../../../../../generated/assets.dart';
 
@@ -104,6 +108,10 @@ class PetItem extends StatelessWidget {
                         Assets.svgsLocationSvg,
                         width: 16.w,
                         height: 16.h,
+                        colorFilter: ColorFilter.mode(
+                          Color(0xFF646464),
+                          BlendMode.srcIn,
+                        ),
                       ),
                       4.horizontalSpace,
                       Expanded(
@@ -124,13 +132,53 @@ class PetItem extends StatelessWidget {
               ),
             ),
 
-            /// Favorite icon
+            /// Favorite icon - with state management
             Padding(
               padding: EdgeInsets.only(right: 12.w, top: 16.h),
-              child: SvgPicture.asset(
-                Assets.svgsHeartSvg,
-                width: 28.w,
-                height: 28.h,
+              child: BlocConsumer<FavoriteCubit, FavoriteState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                    addFavoriteSuccess: (message) => ToastHelper.show(
+                      context,
+                      "Added to favorites Successfully",
+                      type: ToastType.success,
+                    ),
+                    deleteFavoriteSuccess: (message) => ToastHelper.show(
+                      context,
+                      "Removed from favorites Successfully",
+                      type: ToastType.info,
+                    ),
+                    addFavoriteFailure: (error) {
+                      ToastHelper.show(context, error, type: ToastType.error);
+                    },
+                    deleteFavoriteFailure: (error) {
+                      ToastHelper.show(context, error, type: ToastType.error);
+                    },
+                    orElse: () {},
+                  );
+                },
+                builder: (context, state) {
+                  final cubit = context.read<FavoriteCubit>();
+                  final isFavorited = cubit.isFavorited(breed.id);
+                  final favoriteId = cubit.getFavoriteId(breed.id);
+
+                  return GestureDetector(
+                    onTap: () {
+                      if (isFavorited && favoriteId != null) {
+                        cubit.deleteFavorite(favoriteId);
+                      } else {
+                        cubit.addFavorite(breed.id, 'user_${breed.id}');
+                      }
+                    },
+                    child: SvgPicture.asset(
+                      isFavorited
+                          ? Assets.svgsHeartFilledSvg
+                          : Assets.svgsHeartSvg,
+                      width: 28.w,
+                      height: 28.h,
+                    ),
+                  );
+                },
               ),
             ),
           ],

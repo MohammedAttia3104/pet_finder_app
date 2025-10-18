@@ -171,6 +171,7 @@ class PetItem extends StatelessWidget {
                       }
                     },
                     child: SvgPicture.asset(
+                      key: Key("favorite_key"),
                       isFavorited
                           ? Assets.svgsHeartFilledSvg
                           : Assets.svgsHeartSvg,

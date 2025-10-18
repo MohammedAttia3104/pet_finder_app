@@ -39,7 +39,13 @@ class CustomBottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(_icons.length, (index) {
           final isSelected = selectedIndex == index;
+          final keys = [
+            const Key('bottom_nav_home'),
+            const Key('bottom_nav_favorites'),
+            const Key('bottom_nav_pets'),
+          ];
           return GestureDetector(
+            key: keys[index],
             onTap: () => onItemTapped(index),
             child: SvgPicture.asset(
               _icons[index],

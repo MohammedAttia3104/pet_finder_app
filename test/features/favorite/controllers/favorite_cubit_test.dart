@@ -77,35 +77,34 @@ void main() {
 
   group('addFavorite - Basic Success', () {
     blocTest<FavoriteCubit, FavoriteState>(
-      'emit [loading, success, loading, success] on add favorite',
+      'emit [success with temp, success, success with real] on add favorite',
       build: () {
         when(
           () => mockFavoriteRepository.addFavorite(any()),
         ).thenAnswer((_) async => ApiResult.success(FakeAddFavoriteResponse()));
-        when(
-          () => mockFavoriteRepository.fetchFavorites(),
-        ).thenAnswer((_) async => ApiResult.success(generateFakeFavorites(1)));
         return favoriteCubit;
       },
       act: (cubit) => cubit.addFavorite('sibe', 'gZiG70w_u'),
       expect: () => [
-        const FavoriteState.addFavoriteLoading(),
-        isA<AddFavoriteSuccess>(),
-        const FavoriteState.getFavoritesLoading(),
         isA<GetFavoritesSuccess>().having(
           (state) => state.favorites.length,
-          'favorites length after add',
+          'favorites length with temp',
+          1,
+        ),
+        isA<AddFavoriteSuccess>(),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites length with real',
           1,
         ),
       ],
       verify: (cubit) {
         verify(() => mockFavoriteRepository.addFavorite(any())).called(1);
-        verify(() => mockFavoriteRepository.fetchFavorites()).called(1);
       },
     );
 
     blocTest<FavoriteCubit, FavoriteState>(
-      'emit [loading, error] on add favorite failure',
+      'emit [success with temp, success without temp, error] on add favorite failure',
       build: () {
         when(() => mockFavoriteRepository.addFavorite(any())).thenAnswer(
           (_) async => ApiResult.failure(
@@ -116,7 +115,16 @@ void main() {
       },
       act: (cubit) => cubit.addFavorite('asho', 'gZiG70w_u'),
       expect: () => [
-        const FavoriteState.addFavoriteLoading(),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites with temp',
+          1,
+        ),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites after revert',
+          0,
+        ),
         isA<AddFavoriteFailure>().having(
           (state) => state.error,
           'error message',
@@ -131,36 +139,39 @@ void main() {
 
   group('deleteFavorite - Basic Success', () {
     blocTest<FavoriteCubit, FavoriteState>(
-      'emit [loading, success, loading, success] on delete favorite',
+      'emit [success without item, success message, success] on delete favorite',
       build: () {
+        favoriteCubit.favorites.add(FakeFavoriteBreedModel());
+
         when(() => mockFavoriteRepository.deleteFavorite(any())).thenAnswer(
           (_) async => ApiResult.success(FakeDeleteFavoriteResponse()),
         );
-        when(
-          () => mockFavoriteRepository.fetchFavorites(),
-        ).thenAnswer((_) async => ApiResult.success(generateFakeFavorites(0)));
         return favoriteCubit;
       },
       act: (cubit) => cubit.deleteFavorite(232551924),
       expect: () => [
-        const FavoriteState.deleteFavoriteLoading(),
-        isA<DeleteFavoriteSuccess>(),
-        const FavoriteState.getFavoritesLoading(),
         isA<GetFavoritesSuccess>().having(
           (state) => state.favorites.length,
           'favorites length after delete',
           0,
         ),
+        isA<DeleteFavoriteSuccess>(),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites length final',
+          0,
+        ),
       ],
       verify: (cubit) {
         verify(() => mockFavoriteRepository.deleteFavorite(any())).called(1);
-        verify(() => mockFavoriteRepository.fetchFavorites()).called(1);
       },
     );
 
     blocTest<FavoriteCubit, FavoriteState>(
-      'emit [loading, error] on delete favorite failure',
+      'emit [success without item, success with item, error] on delete favorite failure',
       build: () {
+        favoriteCubit.favorites.add(FakeFavoriteBreedModel());
+
         when(() => mockFavoriteRepository.deleteFavorite(any())).thenAnswer(
           (_) async => ApiResult.failure(
             ApiErrorModel.fromJson({'message': 'Failed to delete favorite'}),
@@ -168,9 +179,18 @@ void main() {
         );
         return favoriteCubit;
       },
-      act: (cubit) => cubit.deleteFavorite(232551925),
+      act: (cubit) => cubit.deleteFavorite(232551924),
       expect: () => [
-        const FavoriteState.deleteFavoriteLoading(),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites after optimistic delete',
+          0,
+        ),
+        isA<GetFavoritesSuccess>().having(
+          (state) => state.favorites.length,
+          'favorites after revert',
+          1,
+        ),
         isA<DeleteFavoriteFailure>().having(
           (state) => state.error,
           'error message',

@@ -13,17 +13,23 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   final List<FavoriteBreed> favorites = [];
 
+  void _safeEmit(FavoriteState state) {
+    if (!isClosed) {
+      emit(state);
+    }
+  }
+
   Future<void> getFavorites() async {
-    emit(const FavoriteState.getFavoritesLoading());
+    _safeEmit(const FavoriteState.getFavoritesLoading());
     final result = await _repository.fetchFavorites();
     result.when(
       success: (favoritesData) {
         favorites.clear();
         favorites.addAll(favoritesData);
-        emit(FavoriteState.getFavoritesSuccess(favoritesData));
+        _safeEmit(FavoriteState.getFavoritesSuccess(favoritesData));
       },
       failure: (error) {
-        emit(
+        _safeEmit(
           FavoriteState.getFavoritesFailure(
             error: error.message ?? 'Failed to fetch favorites',
           ),
@@ -43,7 +49,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     );
 
     favorites.add(tempFavorite);
-    emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+    _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
 
     final request = AddFavoriteRequest(imageId: imageId, subId: subId);
     final result = await _repository.addFavorite(request);
@@ -63,14 +69,14 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
         favorites.add(realFavorite);
 
-        emit(FavoriteState.addFavoriteSuccess(message: response.message));
-        emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+        _safeEmit(FavoriteState.addFavoriteSuccess(message: response.message));
+        _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
       },
       failure: (error) {
         favorites.removeWhere((fav) => fav.id == tempFavorite.id);
-        emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+        _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
 
-        emit(
+        _safeEmit(
           FavoriteState.addFavoriteFailure(
             error: error.message ?? 'Failed to add favorite',
           ),
@@ -80,6 +86,16 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   }
 
   Future<void> deleteFavorite(int favoriteId) async {
+    /// Integration Test Check - Prevent deletion of temporary favorites
+    if (favoriteId > 1000000000000) {
+      _safeEmit(
+        const FavoriteState.deleteFavoriteFailure(
+          error: 'Please wait for the favorite to be saved before removing it',
+        ),
+      );
+      return;
+    }
+
     final removedFavorite = favorites.firstWhere(
       (favorite) => favorite.id == favoriteId,
       orElse: () => favorites.isNotEmpty
@@ -95,20 +111,20 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     );
 
     favorites.removeWhere((favorite) => favorite.id == favoriteId);
-    emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+    _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
 
     final result = await _repository.deleteFavorite(favoriteId);
     result.when(
       success: (response) {
-        emit(FavoriteState.deleteFavoriteSuccess(message: response.message));
+        _safeEmit(FavoriteState.deleteFavoriteSuccess(message: response.message));
 
-        emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+        _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
       },
       failure: (error) {
         favorites.add(removedFavorite);
-        emit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
+        _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
 
-        emit(
+        _safeEmit(
           FavoriteState.deleteFavoriteFailure(
             error: error.message ?? 'Failed to delete favorite',
           ),

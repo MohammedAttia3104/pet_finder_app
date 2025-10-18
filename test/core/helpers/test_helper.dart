@@ -30,17 +30,37 @@ class MockHomeRepository extends Mock implements HomeRepository {}
 //Models
 class FakeAddFavoriteRequest extends Fake implements AddFavoriteRequest {}
 
-class FakeFavoriteBreedModel extends Fake implements FavoriteBreed {}
+class FakeFavoriteBreedModel extends Fake implements FavoriteBreed {
+  @override
+  int get id => 232551924;
+
+  @override
+  String get userId => 'ot8jc4';
+
+  @override
+  String get imageId => 'sibe';
+
+  @override
+  String get subId => 'gZiG70w_u';
+
+  @override
+  DateTime get createdAt => DateTime.parse('2025-10-18T09:17:28.000Z');
+
+  @override
+  Map<String, dynamic> get image => {};
+}
 
 class FakeAddFavoriteResponse extends Fake implements AddFavoriteResponse {
   @override
-  String get message => 'Favorite added successfully';
+  String get message => 'SUCCESS';
+
+  @override
+  int get id => 232551925;
 }
 
-class FakeDeleteFavoriteResponse extends Fake
-    implements DeleteFavoriteResponse {
+class FakeDeleteFavoriteResponse extends Fake implements DeleteFavoriteResponse {
   @override
-  String get message => 'Favorite deleted successfully';
+  String get message => 'SUCCESS';
 }
 
 //Data Sources

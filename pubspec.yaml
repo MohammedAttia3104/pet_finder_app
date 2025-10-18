@@ -55,6 +55,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  integration_test:
+    sdk: flutter
+
   #Code generator (mainly used with cubit & retrofit)
   json_serializable: ^6.11.1
   build_runner: ^2.4.0

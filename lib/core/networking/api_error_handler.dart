@@ -39,12 +39,27 @@ class ApiErrorHandler {
         statusCode: statusCode,
       );
     }
+
+    if (error is String) {
+      return ApiErrorModel(
+        message: error,
+        statusCode: statusCode,
+      );
+    }
+
+    if (error is Map<String, dynamic>) {
+      return ApiErrorModel(
+        message: error['message'] ?? "Unknown error occurred",
+        statusCode: statusCode,
+        errorsDetails: (error['details'] as List<dynamic>?)
+            ?.map((e) => e as String?)
+            .toList(),
+      );
+    }
+
     return ApiErrorModel(
-      message: error['message'] ?? "Unknown error occurred",
+      message: "Unknown error occurred",
       statusCode: statusCode,
-      errorsDetails: (error['details'] as List<dynamic>?)
-          ?.map((e) => e as String?)
-          .toList(),
     );
   }
 }

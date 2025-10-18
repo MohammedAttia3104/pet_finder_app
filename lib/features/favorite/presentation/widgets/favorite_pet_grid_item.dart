@@ -89,7 +89,9 @@ class FavoritePetGridItem extends StatelessWidget {
 
               Padding(
                 padding: EdgeInsets.only(right: 4.0.w, top: 4.0.h),
-                child: GestureDetector(
+                child: GestureDetector
+                    (
+                  key: const Key('favorite_grid_delete_button'),
                   onTap: onDelete,
                   child: Container(
                     width: 30.w,
@@ -100,11 +102,11 @@ class FavoritePetGridItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6).r,
                     ),
                     child: SvgPicture.asset(
-                      Assets.svgsHeartSvg,
+                      Assets.svgsHeartFilledSvg,
                       width: 16.w,
                       height: 16.h,
                       colorFilter: ColorFilter.mode(
-                        Colors.red,
+                        AppColors.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),

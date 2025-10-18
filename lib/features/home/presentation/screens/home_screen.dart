@@ -50,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 24.0.h),
+          padding: EdgeInsets.only(
+            left: 16.w,
+            right: 16.w,
+            top: 40.h,
+          ),
           child: Column(
             children: [
               HomeHeader(),

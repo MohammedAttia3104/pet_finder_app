@@ -45,6 +45,8 @@ dependencies:
   fancy_shimmer_image: ^2.0.3
   # Skeletonizer for shimmer loading effects
   skeletonizer: ^2.1.0+1
+  # Styled Toast
+  flutter_styled_toast: ^2.2.1
 
   cupertino_icons: ^1.0.8
 

@@ -5,7 +5,6 @@ import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../generated/assets.dart';
-import 'adopt_me_button.dart';
 
 class BreedMainDetails extends StatelessWidget {
   final BreedModel breed;

@@ -5,7 +5,6 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.9.2+-02569B?style=for-the-badge&logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.9.2+-0175C2?style=for-the-badge&logo=dart)](https://dart.dev)
-[![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](LICENSE)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen?style=for-the-badge)
 
 **A modern Flutter application for discovering and exploring cat breeds using The Cat API**
@@ -31,12 +30,10 @@
 - [API Integration](#-api-integration)
 - [State Management](#-state-management)
 - [Testing](#-testing)
-- [Code Generation](#-code-generation)
 - [Responsive Design](#-responsive-design)
 - [Security](#-security)
 - [Best Practices](#-best-practices)
 - [Documentation](#-documentation)
-- [Contributing](#-contributing)
 - [Authors & Contributors](#-authors--contributors)
 
 ---
@@ -84,14 +81,11 @@ Pet Finder App is a beautifully crafted Flutter application that allows users to
     - Widget tests for UI components
 
 ---
-
 ## 📸 Screenshots
 
-<!-- Uncomment and add your screenshots
 <div align="center">
-  <img src="assets/read_me/ui_ux.png" alt="UI-UX" width="500"/>
+  <img src="assets/images/ui_ux.png" alt="UI-UX" width="500"/>
 </div>
--->
 
 ---
 

@@ -11,7 +11,3 @@ Weight _$WeightFromJson(Map<String, dynamic> json) => Weight(
   metric: json['metric'] as String,
 );
 
-Map<String, dynamic> _$WeightToJson(Weight instance) => <String, dynamic>{
-  'imperial': instance.imperial,
-  'metric': instance.metric,
-};

@@ -36,13 +36,16 @@ class BreedHeaderContainer extends StatelessWidget {
         children: [
           Positioned(
             bottom: 0,
-            child: FancyNetworkImage(
-              width: width,
-              height: 375.h,
-              imagePath: breed.referenceImageId!.toImageUrl(),
-              borderRadiusGeometry: BorderRadius.only(
-                bottomRight: Radius.circular(30).r,
-                bottomLeft: Radius.circular(30).r,
+            child: Hero(
+              tag: 'breed_image_${breed.id}',
+              child: FancyNetworkImage(
+                width: width,
+                height: 375.h,
+                imagePath: breed.referenceImageId!.toImageUrl(),
+                borderRadiusGeometry: BorderRadius.only(
+                  bottomRight: Radius.circular(30).r,
+                  bottomLeft: Radius.circular(30).r,
+                ),
               ),
             ),
           ),

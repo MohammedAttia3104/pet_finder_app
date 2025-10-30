@@ -22,7 +22,6 @@ class FavoritePetGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 162.w,
-      height: 212.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8).r,
@@ -38,14 +37,15 @@ class FavoritePetGridItem extends StatelessWidget {
       padding: EdgeInsets.only(top: 7.h, left: 5.w, right: 5.w, bottom: 9.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16.h,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 10.h,
         children: [
           FancyNetworkImage(
             imagePath:
                 // favorite.imageId.toImageUrl() ??
                 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
             width: 162.w,
-            height: 140.h,
+            height: 135.h,
             borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
           ),
           Row(
@@ -89,8 +89,7 @@ class FavoritePetGridItem extends StatelessWidget {
 
               Padding(
                 padding: EdgeInsets.only(right: 4.0.w, top: 4.0.h),
-                child: GestureDetector
-                    (
+                child: GestureDetector(
                   key: const Key('favorite_grid_delete_button'),
                   onTap: onDelete,
                   child: Container(

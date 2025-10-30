@@ -6,6 +6,7 @@ import 'package:pet_finder_app/features/favorite/presentation/screens/favorite_s
 import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 import 'package:pet_finder_app/features/home/presentation/screens/breed_details_screen.dart';
 import 'package:pet_finder_app/features/layout/presentation/screens/layout_screen.dart';
+import 'package:pet_finder_app/features/layout/presentation/screens/on_boarding_screen.dart';
 
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../di/dependency_injection.dart';
@@ -13,6 +14,11 @@ import '../di/dependency_injection.dart';
 class AppRouter {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.onBoardingScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => OnBoardingScreen(),
+        );
       case Routes.layoutScreen:
         return MaterialPageRoute(
           settings: settings,

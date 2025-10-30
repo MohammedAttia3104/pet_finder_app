@@ -87,13 +87,9 @@ Pet Finder App is a beautifully crafted Flutter application that allows users to
 
 ## 📸 Screenshots
 
-> Coming soon! Screenshots will be added after UI implementation is complete.
-
 <!-- Uncomment and add your screenshots
 <div align="center">
-  <img src="screenshots/home_screen.png" alt="Home Screen" width="250"/>
-  <img src="screenshots/breed_detail.png" alt="Breed Detail" width="250"/>
-  <img src="screenshots/favorites.png" alt="Favorites" width="250"/>
+  <img src="assets/read_me/ui_ux.png" alt="UI-UX" width="500"/>
 </div>
 -->
 

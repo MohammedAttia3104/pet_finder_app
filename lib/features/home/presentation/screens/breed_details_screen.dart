@@ -7,7 +7,7 @@ import 'package:pet_finder_app/features/home/controllers/home_state.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../widgets/breed_details/adopt_me_button.dart';
 import '../widgets/breed_details/breed_header_container.dart';
-import '../widgets/breed_details/breed_main_details.dart';
+import '../widgets/breed_details/breed_main_details.dart'; // Refactored widget
 
 class BreedDetailsScreen extends StatefulWidget {
   final String breedId;

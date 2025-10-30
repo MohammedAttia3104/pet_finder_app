@@ -2,10 +2,12 @@
 class Assets {
   Assets._();
 
+  static const String imagesAndroid12Logo = 'assets/images/android_12_logo.png';
   static const String imagesDog = 'assets/images/dog.png';
   static const String imagesOnBoarding = 'assets/images/on_boarding.png';
   static const String imagesPetsLogo = 'assets/images/pets_logo.png';
   static const String imagesSample = 'assets/images/sample.png';
+  static const String svgsArrowLeftSvg = 'assets/svgs/arrow_left_svg.svg';
   static const String readMeUiUx = 'assets/read_me/ui_ux.png';
   static const String svgsArrowLeftSvg = 'assets/svgs/arrow_left_svg.svg';
   static const String svgsHeartFilledSvg = 'assets/svgs/heart_filled_svg.svg';

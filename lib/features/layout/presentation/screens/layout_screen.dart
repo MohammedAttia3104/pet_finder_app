@@ -6,6 +6,7 @@ import 'package:pet_finder_app/features/favorite/presentation/screens/favorite_s
 import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 import 'package:pet_finder_app/features/home/presentation/screens/home_screen.dart';
 import 'package:pet_finder_app/features/layout/presentation/widgets/custom_bottom_nav_bar.dart';
+import 'package:pet_finder_app/features/pets/presentation/pets_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -21,6 +22,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) {
+      context.read<FavoriteCubit>().getFavorites();
+    }
   }
 
   @override
@@ -40,18 +45,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
           onItemTapped: _onItemTapped,
         ),
       ),
-    );
-  }
-}
-
-class PetsScreen extends StatelessWidget {
-  const PetsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pets'), centerTitle: true),
-      body: const Center(child: Text('Pets Screen')),
     );
   }
 }

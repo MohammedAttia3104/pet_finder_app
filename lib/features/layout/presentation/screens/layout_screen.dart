@@ -6,6 +6,7 @@ import 'package:pet_finder_app/features/favorite/presentation/screens/favorite_s
 import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 import 'package:pet_finder_app/features/home/presentation/screens/home_screen.dart';
 import 'package:pet_finder_app/features/layout/presentation/widgets/custom_bottom_nav_bar.dart';
+import 'package:pet_finder_app/features/pets/presentation/pets_screen.dart';
 
 import '../../../pets/presentation/pets_screen.dart';
 
@@ -23,6 +24,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) {
+      context.read<FavoriteCubit>().getFavorites();
+    }
   }
 
   @override

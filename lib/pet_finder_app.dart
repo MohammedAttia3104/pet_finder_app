@@ -19,7 +19,7 @@ class PetFinderApp extends StatelessWidget {
         return MaterialApp(
           theme: appTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.homeScreen,
+          initialRoute: Routes.onBoardingScreen,
           onGenerateRoute: AppRouter.generateRoute,
           navigatorObservers: [
             AppRouterObserver(),

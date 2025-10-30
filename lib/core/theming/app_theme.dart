@@ -5,7 +5,7 @@ import 'app_colors.dart';
 final ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.whiteColor,
   brightness: Brightness.light,
-  // primaryColor: AppColors.primaryColor,
+  primaryColor: AppColors.primaryColor,
   fontFamily: "IBM Plex Sans Arabic",
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.transparent,

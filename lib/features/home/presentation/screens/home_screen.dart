@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _scrollController = ScrollController()..addListener(_scrollListener);
-    // Fetch initial data
+    /// Fetch initial data
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeCubit>().getBreedsPaginated();
     });

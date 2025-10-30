@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
 import 'package:pet_finder_app/features/home/presentation/widgets/breed_details/widgets/characteristic_card.dart';
 import 'package:pet_finder_app/features/home/presentation/widgets/breed_details/widgets/section_title.dart';
 import 'package:pet_finder_app/features/home/presentation/widgets/breed_details/widgets/special_feature_chip.dart';
 import 'package:pet_finder_app/features/home/presentation/widgets/breed_details/widgets/temperament_chip.dart';
 import 'package:pet_finder_app/features/home/presentation/widgets/breed_details/widgets/trait_progress_bar.dart';
-
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../generated/assets.dart';
 
 class BreedMainDetails extends StatelessWidget {
   final BreedModel breed;
@@ -23,7 +19,6 @@ class BreedMainDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(),
           16.verticalSpace,
           const SectionTitle(title: "About :"),
           8.verticalSpace,
@@ -42,60 +37,6 @@ class BreedMainDetails extends StatelessWidget {
           ],
         ],
       ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              breed.name,
-              style: TextStyle(
-                fontSize: 28.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            4.verticalSpace,
-            Row(
-              children: [
-                SvgPicture.asset(
-                  Assets.svgsLocationSvg,
-                  width: 16.w,
-                  height: 16.h,
-                ),
-                4.horizontalSpace,
-                Text(
-                  breed.origin,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.normal,
-                    color: const Color(0xFF646464),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        Tooltip(
-          message: "intelligence",
-          child: Text(
-            "${breed.intelligence}%",
-            style: TextStyle(
-              fontSize: 26.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryColor,
-            ),
-          ),
-        ),
-      ],
     );
   }
 

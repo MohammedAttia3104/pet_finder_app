@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pet_finder_app/core/extensions/navigation_extension.dart';
+import 'package:pet_finder_app/core/routing/routes.dart';
 import 'package:pet_finder_app/core/theming/app_colors.dart';
 import 'package:pet_finder_app/core/theming/font_weight_helper.dart';
 import 'package:pet_finder_app/features/favorite/data/models/favorite_breed.dart';
@@ -20,101 +22,115 @@ class FavoritePetGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 162.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8).r,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            spreadRadius: 0.5,
-            blurRadius: 4,
-            offset: const Offset(0, 0),
-          ),
-        ],
-      ),
-      padding: EdgeInsets.only(top: 7.h, left: 5.w, right: 5.w, bottom: 9.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        spacing: 10.h,
-        children: [
-          FancyNetworkImage(
-            imagePath:
-                // favorite.imageId.toImageUrl() ??
-                'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-            width: 162.w,
-            height: 135.h,
-            borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Name",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeightHelper.semiBold,
-                      color: Colors.black,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  2.verticalSpace,
-                  Row(
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(
+          Routes.breedDetailsScreen,
+          arguments: {'breedId': favorite.imageId},
+        );
+      },
+      child: Container(
+        width: 162.w,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8).r,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              spreadRadius: 0.5,
+              blurRadius: 4,
+              offset: const Offset(0, 0),
+            ),
+          ],
+        ),
+        padding: EdgeInsets.only(top: 7.h, left: 5.w, right: 5.w, bottom: 9.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          spacing: 10.h,
+          children: [
+            FancyNetworkImage(
+              imagePath:
+                  favorite.breedImageUrl ??
+                  'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
+              width: 162.w,
+              height: 135.h,
+              borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SvgPicture.asset(
-                        Assets.svgsLocationSvg,
-                        width: 16.w,
-                        height: 16.h,
-                      ),
-                      4.horizontalSpace,
                       Text(
-                        "origin",
+                        favorite.breedName ?? "Unknown",
                         style: TextStyle(
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.normal,
-                          color: const Color(0xFF646464),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeightHelper.semiBold,
+                          color: Colors.black,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      2.verticalSpace,
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            Assets.svgsLocationSvg,
+                            width: 16.w,
+                            height: 16.h,
+                          ),
+                          4.horizontalSpace,
+                          Expanded(
+                            child: Text(
+                              favorite.breedOrigin ?? "Unknown",
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.normal,
+                                color: const Color(0xFF646464),
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
 
-              Padding(
-                padding: EdgeInsets.only(right: 4.0.w, top: 4.0.h),
-                child: GestureDetector(
-                  key: const Key('favorite_grid_delete_button'),
-                  onTap: onDelete,
-                  child: Container(
-                    width: 30.w,
-                    height: 30.h,
-                    padding: EdgeInsets.fromLTRB(4.w, 5.h, 4.w, 5.h),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(6).r,
-                    ),
-                    child: SvgPicture.asset(
-                      Assets.svgsHeartFilledSvg,
-                      width: 16.w,
-                      height: 16.h,
-                      colorFilter: ColorFilter.mode(
-                        AppColors.primaryColor,
-                        BlendMode.srcIn,
+                Padding(
+                  padding: EdgeInsets.only(right: 4.0.w, top: 4.0.h),
+                  child: GestureDetector(
+                    key: const Key('favorite_grid_delete_button'),
+                    onTap: onDelete,
+                    child: Container(
+                      width: 30.w,
+                      height: 30.h,
+                      padding: EdgeInsets.fromLTRB(4.w, 5.h, 4.w, 5.h),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(6).r,
+                      ),
+                      child: SvgPicture.asset(
+                        Assets.svgsHeartFilledSvg,
+                        width: 16.w,
+                        height: 16.h,
+                        colorFilter: ColorFilter.mode(
+                          AppColors.primaryColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

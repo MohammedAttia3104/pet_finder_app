@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pet_finder_app/core/theming/app_colors.dart';
 import 'package:pet_finder_app/features/home/data/models/breed_model.dart';
+import 'package:pet_finder_app/generated/assets.dart';
 
 class BreedInfoBadge extends StatelessWidget {
   final BreedModel breed;
@@ -44,10 +46,10 @@ class BreedInfoBadge extends StatelessWidget {
                 4.verticalSpace,
                 Row(
                   children: [
-                    Icon(
-                      Icons.location_on,
-                      size: 14.sp,
-                      color: AppColors.primaryColor,
+                    SvgPicture.asset(
+                      Assets.svgsLocationSvg,
+                      width: 14.w,
+                      height: 14.h,
                     ),
                     4.horizontalSpace,
                     Expanded(

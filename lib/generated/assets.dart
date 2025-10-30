@@ -4,11 +4,12 @@ class Assets {
 
   static const String imagesAndroid12Logo = 'assets/images/android_12_logo.png';
   static const String imagesDog = 'assets/images/dog.png';
+  static const String imagesLauncherIcon = 'assets/images/launcher_icon.png';
   static const String imagesOnBoarding = 'assets/images/on_boarding.png';
   static const String imagesPetsLogo = 'assets/images/pets_logo.png';
   static const String imagesSample = 'assets/images/sample.png';
-  static const String svgsArrowLeftSvg = 'assets/svgs/arrow_left_svg.svg';
   static const String readMeUiUx = 'assets/read_me/ui_ux.png';
+  static const String svgsArrowLeftSvg = 'assets/svgs/arrow_left_svg.svg';
   static const String svgsHeartFilledSvg = 'assets/svgs/heart_filled_svg.svg';
   static const String svgsHeartSvg = 'assets/svgs/heart_svg.svg';
   static const String svgsHomeSvg = 'assets/svgs/home_svg.svg';
@@ -16,8 +17,8 @@ class Assets {
   static const String svgsMessagesSvg = 'assets/svgs/messages_svg.svg';
   static const String svgsNotificationSvg = 'assets/svgs/notification_svg.svg';
   static const String svgsPetsSvg = 'assets/svgs/pets_svg.svg';
-  static const String svgsProfileCircleSvg =
-      'assets/svgs/profile_circle_svg.svg';
+  static const String svgsProfileCircleSvg = 'assets/svgs/profile_circle_svg.svg';
   static const String svgsSearchNormalSvg = 'assets/svgs/search_normal_svg.svg';
   static const String svgsSettingSvg = 'assets/svgs/setting_svg.svg';
+
 }

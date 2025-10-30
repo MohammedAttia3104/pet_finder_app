@@ -45,4 +45,3 @@ BreedModel _$BreedModelFromJson(Map<String, dynamic> json) => BreedModel(
   hypoallergenic: (json['hypoallergenic'] as num).toInt(),
   referenceImageId: json['reference_image_id'] as String?,
 );
-

@@ -9,6 +9,7 @@ class AddFavoriteResponse {
 
   AddFavoriteResponse({required this.message, required this.id});
 
-  factory AddFavoriteResponse.fromJson(Map<String, dynamic> json) => _$AddFavoriteResponseFromJson(json);
+  factory AddFavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddFavoriteResponseFromJson(json);
   Map<String, dynamic> toJson() => _$AddFavoriteResponseToJson(this);
 }

@@ -251,7 +251,8 @@ class FakeAddFavoriteResponse extends Fake implements AddFavoriteResponse {
   int get id => 232551925;
 }
 
-class FakeDeleteFavoriteResponse extends Fake implements DeleteFavoriteResponse {
+class FakeDeleteFavoriteResponse extends Fake
+    implements DeleteFavoriteResponse {
   @override
   String get message => 'SUCCESS';
 }

@@ -31,7 +31,10 @@ class AppRouterObserver extends NavigatorObserver {
   }
 
   @override
-  void didStartUserGesture(Route<dynamic> route, Route<dynamic>? previousRoute) {
+  void didStartUserGesture(
+    Route<dynamic> route,
+    Route<dynamic>? previousRoute,
+  ) {
     _logRouteChange('Started user gesture on', route);
     super.didStartUserGesture(route, previousRoute);
   }

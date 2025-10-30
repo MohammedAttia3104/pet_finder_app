@@ -16,8 +16,8 @@ class Assets {
   static const String svgsMessagesSvg = 'assets/svgs/messages_svg.svg';
   static const String svgsNotificationSvg = 'assets/svgs/notification_svg.svg';
   static const String svgsPetsSvg = 'assets/svgs/pets_svg.svg';
-  static const String svgsProfileCircleSvg = 'assets/svgs/profile_circle_svg.svg';
+  static const String svgsProfileCircleSvg =
+      'assets/svgs/profile_circle_svg.svg';
   static const String svgsSearchNormalSvg = 'assets/svgs/search_normal_svg.svg';
   static const String svgsSettingSvg = 'assets/svgs/setting_svg.svg';
-
 }

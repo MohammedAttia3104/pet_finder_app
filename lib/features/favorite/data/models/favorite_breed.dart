@@ -35,7 +35,8 @@ class FavoriteBreed {
     this.breedImageUrl,
   });
 
-  factory FavoriteBreed.fromJson(Map<String, dynamic> json) => _$FavoriteBreedFromJson(json);
+  factory FavoriteBreed.fromJson(Map<String, dynamic> json) =>
+      _$FavoriteBreedFromJson(json);
   Map<String, dynamic> toJson() => _$FavoriteBreedToJson(this);
 
   // Copy with method to add breed data

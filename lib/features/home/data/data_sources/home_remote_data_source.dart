@@ -23,7 +23,5 @@ abstract class HomeRemoteDataSource {
   );
 
   @GET('v1/breeds/{id}')
-  Future<BreedModel> getBreedById(
-    @Path('id') String id,
-  );
+  Future<BreedModel> getBreedById(@Path('id') String id);
 }

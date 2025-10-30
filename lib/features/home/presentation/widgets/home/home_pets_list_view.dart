@@ -24,7 +24,8 @@ class HomePetsListView extends StatelessWidget {
             separatorBuilder: (_, _) => 12.verticalSpace,
             itemCount: 5,
           ),
-          getBreedsError: (failure) => Center(child: Text('Failed to load breeds')),
+          getBreedsError: (failure) =>
+              Center(child: Text('Failed to load breeds')),
           paginationLoading: () {
             return ListView.separated(
               controller: scrollController,
@@ -105,10 +106,7 @@ class HomePetsListView extends StatelessWidget {
                 8.verticalSpace,
                 Text(
                   failure,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
               ],

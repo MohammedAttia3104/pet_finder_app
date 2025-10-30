@@ -40,7 +40,9 @@ class _HomeCategoriesState extends State<HomeCategories> {
                       setState(() {
                         selectedIndex = index;
                       });
-                      context.read<HomeCubit>().selectCategory(categories[index]);
+                      context.read<HomeCubit>().selectCategory(
+                        categories[index],
+                      );
                     }
                   },
                   selected: isSelected,

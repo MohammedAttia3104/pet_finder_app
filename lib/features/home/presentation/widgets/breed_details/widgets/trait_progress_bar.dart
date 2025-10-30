@@ -49,9 +49,7 @@ class TraitProgressBar extends StatelessWidget {
             value: progress,
             minHeight: 8.h,
             backgroundColor: Colors.grey.withValues(alpha: 0.2),
-            valueColor: AlwaysStoppedAnimation<Color>(
-              _getColorForValue(value),
-            ),
+            valueColor: AlwaysStoppedAnimation<Color>(_getColorForValue(value)),
           ),
         ),
       ],
@@ -65,4 +63,3 @@ class TraitProgressBar extends StatelessWidget {
     return Colors.red;
   }
 }
-

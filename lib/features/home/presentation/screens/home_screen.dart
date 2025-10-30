@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _scrollController = ScrollController()..addListener(_scrollListener);
+
     /// Fetch initial data
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeCubit>().getBreedsPaginated();
@@ -50,11 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(
-            left: 16.w,
-            right: 16.w,
-            top: 40.h,
-          ),
+          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 40.h),
           child: Column(
             children: [
               HomeHeader(),

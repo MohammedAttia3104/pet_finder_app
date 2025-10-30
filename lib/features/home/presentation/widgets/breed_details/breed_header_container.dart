@@ -91,10 +91,7 @@ class BreedHeaderContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 40.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildBackButton(context),
-          _buildFavoriteIcon(),
-        ],
+        children: [_buildBackButton(context), _buildFavoriteIcon()],
       ),
     );
   }
@@ -146,16 +143,10 @@ class BreedHeaderContainer extends StatelessWidget {
         "Removed from favorites successfully",
         type: ToastType.info,
       ),
-      addFavoriteFailure: (error) => ToastHelper.show(
-        context,
-        error,
-        type: ToastType.error,
-      ),
-      deleteFavoriteFailure: (error) => ToastHelper.show(
-        context,
-        error,
-        type: ToastType.error,
-      ),
+      addFavoriteFailure: (error) =>
+          ToastHelper.show(context, error, type: ToastType.error),
+      deleteFavoriteFailure: (error) =>
+          ToastHelper.show(context, error, type: ToastType.error),
       orElse: () {},
     );
   }

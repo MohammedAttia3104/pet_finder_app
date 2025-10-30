@@ -28,12 +28,42 @@ class ServicesTab extends StatelessWidget {
 
   Widget _buildServicesGrid() {
     final services = [
-      {'icon': Icons.medical_services, 'title': 'Veterinary', 'providers': '24', 'color': Colors.red},
-      {'icon': Icons.content_cut, 'title': 'Grooming', 'providers': '18', 'color': Colors.blue},
-      {'icon': Icons.school, 'title': 'Training', 'providers': '12', 'color': Colors.orange},
-      {'icon': Icons.pets, 'title': 'Pet Sitting', 'providers': '31', 'color': Colors.purple},
-      {'icon': Icons.hotel, 'title': 'Boarding', 'providers': '15', 'color': Colors.green},
-      {'icon': Icons.local_shipping, 'title': 'Pet Taxi', 'providers': '8', 'color': Colors.cyan},
+      {
+        'icon': Icons.medical_services,
+        'title': 'Veterinary',
+        'providers': '24',
+        'color': Colors.red,
+      },
+      {
+        'icon': Icons.content_cut,
+        'title': 'Grooming',
+        'providers': '18',
+        'color': Colors.blue,
+      },
+      {
+        'icon': Icons.school,
+        'title': 'Training',
+        'providers': '12',
+        'color': Colors.orange,
+      },
+      {
+        'icon': Icons.pets,
+        'title': 'Pet Sitting',
+        'providers': '31',
+        'color': Colors.purple,
+      },
+      {
+        'icon': Icons.hotel,
+        'title': 'Boarding',
+        'providers': '15',
+        'color': Colors.green,
+      },
+      {
+        'icon': Icons.local_shipping,
+        'title': 'Pet Taxi',
+        'providers': '8',
+        'color': Colors.cyan,
+      },
     ];
 
     return GridView.builder(
@@ -60,13 +90,30 @@ class ServicesTab extends StatelessWidget {
 
   Widget _buildNearbyProviders() {
     final providers = [
-      {'name': 'Happy Paws Clinic', 'rating': '4.8', 'distance': '1.2 km', 'type': 'Veterinary'},
-      {'name': 'Pet Spa & Grooming', 'rating': '4.9', 'distance': '2.5 km', 'type': 'Grooming'},
-      {'name': 'Puppy Training Academy', 'rating': '4.7', 'distance': '3.1 km', 'type': 'Training'},
+      {
+        'name': 'Happy Paws Clinic',
+        'rating': '4.8',
+        'distance': '1.2 km',
+        'type': 'Veterinary',
+      },
+      {
+        'name': 'Pet Spa & Grooming',
+        'rating': '4.9',
+        'distance': '2.5 km',
+        'type': 'Grooming',
+      },
+      {
+        'name': 'Puppy Training Academy',
+        'rating': '4.7',
+        'distance': '3.1 km',
+        'type': 'Training',
+      },
     ];
 
     return Column(
-      children: providers.map((provider) => _buildProviderCard(provider)).toList(),
+      children: providers
+          .map((provider) => _buildProviderCard(provider))
+          .toList(),
     );
   }
 
@@ -94,7 +141,11 @@ class ServicesTab extends StatelessWidget {
               color: AppColors.secondaryColor,
               borderRadius: BorderRadius.circular(12).r,
             ),
-            child: Icon(Icons.store, color: AppColors.primaryColor, size: 32.sp),
+            child: Icon(
+              Icons.store,
+              color: AppColors.primaryColor,
+              size: 32.sp,
+            ),
           ),
           16.horizontalSpace,
           Expanded(
@@ -112,7 +163,10 @@ class ServicesTab extends StatelessWidget {
                 4.verticalSpace,
                 Text(
                   provider['type']!,
-                  style: TextStyle(fontSize: 12.sp, color: AppColors.primaryColor),
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
                 6.verticalSpace,
                 Row(
@@ -121,24 +175,37 @@ class ServicesTab extends StatelessWidget {
                     4.horizontalSpace,
                     Text(
                       provider['rating']!,
-                      style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     12.horizontalSpace,
-                    Icon(Icons.location_on, size: 14.sp, color: const Color(0xFF646464)),
+                    Icon(
+                      Icons.location_on,
+                      size: 14.sp,
+                      color: const Color(0xFF646464),
+                    ),
                     4.horizontalSpace,
                     Text(
                       provider['distance']!,
-                      style: TextStyle(fontSize: 12.sp, color: const Color(0xFF646464)),
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: const Color(0xFF646464),
+                      ),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          Icon(Icons.arrow_forward_ios, size: 16.sp, color: const Color(0xFF646464)),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 16.sp,
+            color: const Color(0xFF646464),
+          ),
         ],
       ),
     );
   }
 }
-

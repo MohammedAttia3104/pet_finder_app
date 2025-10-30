@@ -148,7 +148,9 @@ class HomeCubit extends Cubit<HomeState> {
         } else {
           breeds.addAll(breedsData);
           _page++;
-          logger.i('getBreedsPaginated: Added ${breedsData.length} breeds, new page: $_page');
+          logger.i(
+            'getBreedsPaginated: Added ${breedsData.length} breeds, new page: $_page',
+          );
         }
         if (!isClosed) {
           emit(HomeState.getBreedsSuccess(breeds));

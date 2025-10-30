@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_error_model.g.dart';
+
 @JsonSerializable()
 class ApiErrorModel {
   final bool? success;
@@ -11,7 +12,7 @@ class ApiErrorModel {
   final List<String?>? errorsDetails;
 
   ApiErrorModel({
-     this.success,
+    this.success,
     this.message,
     this.statusCode,
     this.errorsDetails,

@@ -9,16 +9,23 @@ class FavoriteState with _$FavoriteState {
 
   ///Get favorites
   const factory FavoriteState.getFavoritesLoading() = GetFavoritesLoading;
-  const factory FavoriteState.getFavoritesSuccess(List<FavoriteBreed> favorites) = GetFavoritesSuccess;
-  const factory FavoriteState.getFavoritesFailure({required String error}) = GetFavoritesFailure;
+  const factory FavoriteState.getFavoritesSuccess(
+    List<FavoriteBreed> favorites,
+  ) = GetFavoritesSuccess;
+  const factory FavoriteState.getFavoritesFailure({required String error}) =
+      GetFavoritesFailure;
 
   ///Add favorite
   const factory FavoriteState.addFavoriteLoading() = AddFavoriteLoading;
-  const factory FavoriteState.addFavoriteSuccess({required String message}) = AddFavoriteSuccess;
-  const factory FavoriteState.addFavoriteFailure({required String error}) = AddFavoriteFailure;
+  const factory FavoriteState.addFavoriteSuccess({required String message}) =
+      AddFavoriteSuccess;
+  const factory FavoriteState.addFavoriteFailure({required String error}) =
+      AddFavoriteFailure;
 
   ///Delete favorite
   const factory FavoriteState.deleteFavoriteLoading() = DeleteFavoriteLoading;
-  const factory FavoriteState.deleteFavoriteSuccess({required String message}) = DeleteFavoriteSuccess;
-  const factory FavoriteState.deleteFavoriteFailure({required String error}) = DeleteFavoriteFailure;
+  const factory FavoriteState.deleteFavoriteSuccess({required String message}) =
+      DeleteFavoriteSuccess;
+  const factory FavoriteState.deleteFavoriteFailure({required String error}) =
+      DeleteFavoriteFailure;
 }

@@ -9,10 +9,6 @@ class SvgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      svgIcon,
-      width: 24.w,
-      height: 24.h,
-    );
+    return SvgPicture.asset(svgIcon, width: 24.w, height: 24.h);
   }
 }

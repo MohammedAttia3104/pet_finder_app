@@ -92,12 +92,14 @@ class CareTab extends StatelessWidget {
 
     return Column(
       children: tips
-          .map((tip) => CareTipCard(
-                icon: tip['icon'] as IconData,
-                title: tip['title'] as String,
-                description: tip['description'] as String,
-                color: tip['color'] as Color,
-              ))
+          .map(
+            (tip) => CareTipCard(
+              icon: tip['icon'] as IconData,
+              title: tip['title'] as String,
+              description: tip['description'] as String,
+              color: tip['color'] as Color,
+            ),
+          )
           .toList(),
     );
   }
@@ -106,7 +108,11 @@ class CareTab extends StatelessWidget {
     final guides = [
       {'title': 'Basic Commands', 'duration': '15 min', 'level': 'Beginner'},
       {'title': 'House Training', 'duration': '25 min', 'level': 'Beginner'},
-      {'title': 'Leash Training', 'duration': '20 min', 'level': 'Intermediate'},
+      {
+        'title': 'Leash Training',
+        'duration': '20 min',
+        'level': 'Intermediate',
+      },
       {'title': 'Advanced Tricks', 'duration': '30 min', 'level': 'Advanced'},
     ];
 
@@ -124,4 +130,3 @@ class CareTab extends StatelessWidget {
     );
   }
 }
-

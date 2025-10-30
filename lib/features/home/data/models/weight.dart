@@ -9,10 +9,7 @@ class Weight {
   @JsonKey(name: "metric")
   String metric;
 
-  Weight({
-    required this.imperial,
-    required this.metric,
-  });
+  Weight({required this.imperial, required this.metric});
 
   factory Weight.fromJson(Map<String, dynamic> json) => _$WeightFromJson(json);
 }

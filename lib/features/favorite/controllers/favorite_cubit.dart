@@ -12,7 +12,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   final FavoriteRepository _repository;
   final HomeRepository _homeRepository;
 
-  FavoriteCubit(this._repository, this._homeRepository) : super(const FavoriteState.initial());
+  FavoriteCubit(this._repository, this._homeRepository)
+    : super(const FavoriteState.initial());
 
   final List<FavoriteBreed> favorites = [];
 
@@ -34,7 +35,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         final enrichedFavorites = <FavoriteBreed>[];
         for (var favorite in favoritesData) {
           // Fetch breed details using imageId (which is the breed ID)
-          final breedResult = await _homeRepository.getBreedById(favorite.imageId);
+          final breedResult = await _homeRepository.getBreedById(
+            favorite.imageId,
+          );
 
           await breedResult.when(
             success: (breed) {
@@ -144,7 +147,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     final result = await _repository.deleteFavorite(favoriteId);
     result.when(
       success: (response) {
-        _safeEmit(FavoriteState.deleteFavoriteSuccess(message: response.message));
+        _safeEmit(
+          FavoriteState.deleteFavoriteSuccess(message: response.message),
+        );
 
         _safeEmit(FavoriteState.getFavoritesSuccess(List.from(favorites)));
       },

@@ -14,16 +14,19 @@ class ApiErrorHandler {
           return ApiErrorModel(message: "Connection timeout with the server");
         case DioExceptionType.unknown:
           return ApiErrorModel(
-              message:
-                  "Connection to the server failed due to internet connection");
+            message:
+                "Connection to the server failed due to internet connection",
+          );
         case DioExceptionType.receiveTimeout:
           return ApiErrorModel(
-              message: "Receive timeout in connection with the server");
+            message: "Receive timeout in connection with the server",
+          );
         case DioExceptionType.badResponse:
           return _handleError(error.response?.statusCode, error.response?.data);
         case DioExceptionType.sendTimeout:
           return ApiErrorModel(
-              message: "Send timeout in connection with the server");
+            message: "Send timeout in connection with the server",
+          );
         default:
           return ApiErrorModel(message: "Something went wrong");
       }
@@ -35,16 +38,14 @@ class ApiErrorHandler {
   static ApiErrorModel _handleError(int? statusCode, dynamic error) {
     if (error is String && error.contains('<html')) {
       return ApiErrorModel(
-        message: "Received an HTML response instead of JSON. Possible server error.",
+        message:
+            "Received an HTML response instead of JSON. Possible server error.",
         statusCode: statusCode,
       );
     }
 
     if (error is String) {
-      return ApiErrorModel(
-        message: error,
-        statusCode: statusCode,
-      );
+      return ApiErrorModel(message: error, statusCode: statusCode);
     }
 
     if (error is Map<String, dynamic>) {

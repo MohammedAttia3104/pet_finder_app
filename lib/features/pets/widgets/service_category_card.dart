@@ -58,10 +58,7 @@ class ServiceCategoryCard extends StatelessWidget {
             4.verticalSpace,
             Text(
               '$providerCount nearby',
-              style: TextStyle(
-                fontSize: 11.sp,
-                color: const Color(0xFF646464),
-              ),
+              style: TextStyle(fontSize: 11.sp, color: const Color(0xFF646464)),
             ),
           ],
         ),
@@ -69,4 +66,3 @@ class ServiceCategoryCard extends StatelessWidget {
     );
   }
 }
-

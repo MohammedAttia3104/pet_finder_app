@@ -39,4 +39,3 @@ class SpecialFeatureChip extends StatelessWidget {
     );
   }
 }
-

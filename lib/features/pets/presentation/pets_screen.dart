@@ -13,7 +13,8 @@ class PetsScreen extends StatefulWidget {
   State<PetsScreen> createState() => _PetsScreenState();
 }
 
-class _PetsScreenState extends State<PetsScreen> with SingleTickerProviderStateMixin {
+class _PetsScreenState extends State<PetsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -88,11 +89,7 @@ class _PetsScreenState extends State<PetsScreen> with SingleTickerProviderStateM
               color: AppColors.secondaryColor,
               borderRadius: BorderRadius.circular(12).r,
             ),
-            child: Icon(
-              Icons.pets,
-              color: AppColors.primaryColor,
-              size: 24.sp,
-            ),
+            child: Icon(Icons.pets, color: AppColors.primaryColor, size: 24.sp),
           ),
         ],
       ),
@@ -109,7 +106,10 @@ class _PetsScreenState extends State<PetsScreen> with SingleTickerProviderStateM
         labelColor: AppColors.primaryColor,
         unselectedLabelColor: const Color(0xFF646464),
         labelStyle: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-        unselectedLabelStyle: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.normal,
+        ),
         tabs: const [
           Tab(text: 'Care Tips'),
           Tab(text: 'Health'),

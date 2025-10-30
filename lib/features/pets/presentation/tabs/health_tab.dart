@@ -101,7 +101,11 @@ class HealthTab extends StatelessWidget {
           16.verticalSpace,
           Row(
             children: [
-              _buildHealthMetric('Weight', '12.5 kg', Icons.monitor_weight_outlined),
+              _buildHealthMetric(
+                'Weight',
+                '12.5 kg',
+                Icons.monitor_weight_outlined,
+              ),
               20.horizontalSpace,
               _buildHealthMetric('Activity', '8.2 km', Icons.directions_run),
             ],
@@ -148,14 +152,8 @@ class HealthTab extends StatelessWidget {
           date: 'Nov 5, 2025',
           isUrgent: true,
         ),
-        HealthReminderCard(
-          title: 'Flea Treatment',
-          date: 'Nov 15, 2025',
-        ),
-        HealthReminderCard(
-          title: 'Dental Checkup',
-          date: 'Dec 1, 2025',
-        ),
+        HealthReminderCard(title: 'Flea Treatment', date: 'Nov 15, 2025'),
+        HealthReminderCard(title: 'Dental Checkup', date: 'Dec 1, 2025'),
       ],
     );
   }
@@ -176,15 +174,30 @@ class HealthTab extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildVetVisitItem('Last Visit', 'Oct 15, 2025', 'Annual Checkup', Colors.green),
+          _buildVetVisitItem(
+            'Last Visit',
+            'Oct 15, 2025',
+            'Annual Checkup',
+            Colors.green,
+          ),
           Divider(height: 24.h),
-          _buildVetVisitItem('Next Visit', 'Nov 5, 2025', 'Vaccination', AppColors.primaryColor),
+          _buildVetVisitItem(
+            'Next Visit',
+            'Nov 5, 2025',
+            'Vaccination',
+            AppColors.primaryColor,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildVetVisitItem(String label, String date, String purpose, Color color) {
+  Widget _buildVetVisitItem(
+    String label,
+    String date,
+    String purpose,
+    Color color,
+  ) {
     return Row(
       children: [
         Container(
@@ -202,7 +215,10 @@ class HealthTab extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: TextStyle(fontSize: 12.sp, color: const Color(0xFF646464)),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: const Color(0xFF646464),
+                ),
               ),
               4.verticalSpace,
               Text(
@@ -225,4 +241,3 @@ class HealthTab extends StatelessWidget {
     );
   }
 }
-

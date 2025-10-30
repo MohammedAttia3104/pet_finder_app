@@ -44,8 +44,9 @@ void main() {
       await setupGetIt();
     });
 
-    testWidgets('Load favorites screen and verify empty state',
-        (WidgetTester tester) async {
+    testWidgets('Load favorites screen and verify empty state', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         ScreenUtilInit(
           designSize: const Size(375, 812),
@@ -64,8 +65,9 @@ void main() {
       expect(find.byType(FavoriteScreen), findsOneWidget);
     });
 
-    testWidgets('Add favorite from home then visible in favorites tab',
-        (tester) async {
+    testWidgets('Add favorite from home then visible in favorites tab', (
+      tester,
+    ) async {
       await tester.pumpWidget(const PetFinderApp());
       await tester.pumpAndSettle();
 
@@ -84,13 +86,17 @@ void main() {
       await tester.tap(favTab);
       await tester.pumpAndSettle();
 
-      expect(find.byKey(const Key('favorite_grid_delete_button')), findsWidgets);
+      expect(
+        find.byKey(const Key('favorite_grid_delete_button')),
+        findsWidgets,
+      );
       expect(find.text('No favorites yet'), findsNothing);
     });
 
     ///Todo : fails due to issues ... to be fixed later
-    testWidgets('Remove favorite from home and verify empty in favorites',
-        (WidgetTester tester) async {
+    testWidgets('Remove favorite from home and verify empty in favorites', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(const PetFinderApp());
       await tester.pumpAndSettle();
 

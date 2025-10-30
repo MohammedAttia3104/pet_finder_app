@@ -8,6 +8,7 @@ class DeleteFavoriteResponse {
 
   DeleteFavoriteResponse({required this.message});
 
-  factory DeleteFavoriteResponse.fromJson(Map<String, dynamic> json) => _$DeleteFavoriteResponseFromJson(json);
+  factory DeleteFavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeleteFavoriteResponseFromJson(json);
   Map<String, dynamic> toJson() => _$DeleteFavoriteResponseToJson(this);
 }

@@ -105,4 +105,3 @@ class BreedInfoBadge extends StatelessWidget {
     );
   }
 }
-

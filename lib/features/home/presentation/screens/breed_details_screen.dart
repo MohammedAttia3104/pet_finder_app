@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_finder_app/features/favorite/controllers/favorite_cubit.dart';
 import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 import 'package:pet_finder_app/features/home/controllers/home_state.dart';
 
@@ -24,6 +25,7 @@ class _BreedDetailsScreenState extends State<BreedDetailsScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeCubit>().getBreedById(widget.breedId);
+      context.read<FavoriteCubit>().getFavorites();
     });
   }
 

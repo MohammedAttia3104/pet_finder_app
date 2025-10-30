@@ -1,15 +1,18 @@
 import 'package:bloc/bloc.dart';
+import 'package:pet_finder_app/core/extensions/image_url_extension.dart';
 import 'package:pet_finder_app/core/networking/api_result.dart';
 import 'package:pet_finder_app/features/favorite/data/models/add_favorite_request.dart';
 import 'package:pet_finder_app/features/favorite/data/models/favorite_breed.dart';
 import 'package:pet_finder_app/features/favorite/data/repositories/favorite_repository.dart';
+import 'package:pet_finder_app/features/home/data/repositories/home_repository.dart';
 
 import 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   final FavoriteRepository _repository;
+  final HomeRepository _homeRepository;
 
-  FavoriteCubit(this._repository) : super(const FavoriteState.initial());
+  FavoriteCubit(this._repository, this._homeRepository) : super(const FavoriteState.initial());
 
   final List<FavoriteBreed> favorites = [];
 
@@ -22,11 +25,36 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   Future<void> getFavorites() async {
     _safeEmit(const FavoriteState.getFavoritesLoading());
     final result = await _repository.fetchFavorites();
-    result.when(
-      success: (favoritesData) {
+
+    await result.when(
+      success: (favoritesData) async {
         favorites.clear();
-        favorites.addAll(favoritesData);
-        _safeEmit(FavoriteState.getFavoritesSuccess(favoritesData));
+
+        // Fetch breed details for each favorite
+        final enrichedFavorites = <FavoriteBreed>[];
+        for (var favorite in favoritesData) {
+          // Fetch breed details using imageId (which is the breed ID)
+          final breedResult = await _homeRepository.getBreedById(favorite.imageId);
+
+          await breedResult.when(
+            success: (breed) {
+              // Add breed data to favorite
+              final enrichedFavorite = favorite.copyWith(
+                breedName: breed.name,
+                breedOrigin: breed.origin,
+                breedImageUrl: breed.referenceImageId?.toImageUrl(),
+              );
+              enrichedFavorites.add(enrichedFavorite);
+            },
+            failure: (error) {
+              // If breed fetch fails, add favorite without breed data
+              enrichedFavorites.add(favorite);
+            },
+          );
+        }
+
+        favorites.addAll(enrichedFavorites);
+        _safeEmit(FavoriteState.getFavoritesSuccess(enrichedFavorites));
       },
       failure: (error) {
         _safeEmit(

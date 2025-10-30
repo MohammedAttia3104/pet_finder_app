@@ -34,5 +34,5 @@ Future<void> setupGetIt() async {
     () => FavoriteRepositoryImpl(remoteDataSource: sl()),
   );
 
-  sl.registerFactory<FavoriteCubit>(() => FavoriteCubit(sl()));
+  sl.registerFactory<FavoriteCubit>(() => FavoriteCubit(sl(), sl()));
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_finder_app/core/theming/app_colors.dart';
 import 'package:pet_finder_app/core/theming/font_weight_helper.dart';
+import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/utils/app_strings.dart';
@@ -14,7 +16,6 @@ class HomeCategories extends StatefulWidget {
 }
 
 class _HomeCategoriesState extends State<HomeCategories> {
-  bool isSelected = false;
   int selectedIndex = 0;
 
   @override
@@ -31,15 +32,18 @@ class _HomeCategoriesState extends State<HomeCategories> {
               scrollDirection: Axis.horizontal,
               itemCount: categories.length,
               itemBuilder: (context, index) {
+                final isSelected = selectedIndex == index;
                 return FilterChip(
                   label: Text(categories[index]),
                   onSelected: (value) {
-                    setState(() {
-                      isSelected = value;
-                      selectedIndex = index;
-                    });
+                    if (selectedIndex != index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      context.read<HomeCubit>().selectCategory(categories[index]);
+                    }
                   },
-                  selected: selectedIndex == index,
+                  selected: isSelected,
                   selectedColor: AppColors.primaryColor,
                   backgroundColor: AppColors.secondaryColor,
                   labelStyle: TextStyle(

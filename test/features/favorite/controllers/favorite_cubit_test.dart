@@ -12,13 +12,15 @@ import '../../../core/helpers/test_setup.dart';
 
 void main() {
   late MockFavoriteRepository mockFavoriteRepository;
+  late MockHomeRepository mockHomeRepository;
   late FavoriteCubit favoriteCubit;
 
   setUpAll(setupTests);
 
   setUp(() {
     mockFavoriteRepository = MockFavoriteRepository();
-    favoriteCubit = FavoriteCubit(mockFavoriteRepository);
+    mockHomeRepository = MockHomeRepository();
+    favoriteCubit = FavoriteCubit(mockFavoriteRepository, mockHomeRepository);
   });
 
   tearDown(() => favoriteCubit.close());
@@ -34,6 +36,11 @@ void main() {
         when(
           () => mockFavoriteRepository.fetchFavorites(),
         ).thenAnswer((_) async => ApiResult.success(generateFakeFavorites(2)));
+
+        when(
+          () => mockHomeRepository.getBreedById(any()),
+        ).thenAnswer((_) async => ApiResult.success(FakeBreedModel()));
+
         return favoriteCubit;
       },
       act: (cubit) => cubit.getFavorites(),
@@ -47,6 +54,7 @@ void main() {
       ],
       verify: (cubit) {
         verify(() => mockFavoriteRepository.fetchFavorites()).called(1);
+        verify(() => mockHomeRepository.getBreedById(any())).called(2);
       },
     );
 

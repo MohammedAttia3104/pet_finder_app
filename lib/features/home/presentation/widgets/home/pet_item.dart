@@ -48,13 +48,16 @@ class PetItem extends StatelessWidget {
                 bottom: 6.h,
                 right: 16.w,
               ),
-              child: FancyNetworkImage(
-                imagePath:
-                    breedImage ??
-                    'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-                width: 112.w,
-                height: 112.h,
-                borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
+              child: Hero(
+                tag: 'breed_image_${breed.id}',
+                child: FancyNetworkImage(
+                  imagePath:
+                      breedImage ??
+                      'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
+                  width: 112.w,
+                  height: 112.h,
+                  borderRadiusGeometry: BorderRadius.all(Radius.circular(8).r),
+                ),
               ),
             ),
 

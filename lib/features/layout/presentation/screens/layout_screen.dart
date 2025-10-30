@@ -7,6 +7,8 @@ import 'package:pet_finder_app/features/home/controllers/home_cubit.dart';
 import 'package:pet_finder_app/features/home/presentation/screens/home_screen.dart';
 import 'package:pet_finder_app/features/layout/presentation/widgets/custom_bottom_nav_bar.dart';
 
+import '../../../pets/presentation/pets_screen.dart';
+
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
 
@@ -40,18 +42,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
           onItemTapped: _onItemTapped,
         ),
       ),
-    );
-  }
-}
-
-class PetsScreen extends StatelessWidget {
-  const PetsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pets'), centerTitle: true),
-      body: const Center(child: Text('Pets Screen')),
     );
   }
 }
